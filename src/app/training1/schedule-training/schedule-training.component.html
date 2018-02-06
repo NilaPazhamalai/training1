@@ -1,0 +1,77 @@
+
+<form #scheduleForm="ngForm">
+
+<div class="container">
+        <h1> Schedule Training</h1>
+    <div class="row" > 
+        <div class="form-group col-xs-6">
+            <label> Trainer Id</label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="scheduleTraining.trainer.trainerId" required name="id" #id="ngModel">
+            <div [hidden]="id.valid || id.pristine" class="alert alert-danger">Id is required</div>  
+        </div>
+      
+        <div class="form-group col-xs-6">
+             <label> Trainer Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="scheduleTraining.trainer.trainerName" name="name"> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-6">
+            <label for="domain"> Domain </label>
+             <select class="form-control" id="domain" required [(ngModel)]="scheduleTraining.trainer.domain" name="domain" #domain="ngModel">
+                <option *ngFor="let domain of domains"  [value]="domain">{{domain}}</option>
+            </select>
+            <div [hidden]="domain.valid || domain.pristine" class="alert alert-danger">Domain is required</div>
+        </div>
+    </div>
+   
+</div>
+
+<div class="container">
+    <div class="row" >
+      <div class="col-xs-1">
+        <label> S.No</label>
+        </div>
+      <div class="col-xs-3">
+          <label> College Name</label>
+      </div>
+      <div class="col-xs-3">
+          <label> Training Name</label>
+      </div>
+      <div class="col-xs-2">
+          <label> Date</label>
+      </div>
+      <div class="col-xs-3">
+          <label> Duration</label>
+      </div>
+    </div>
+<div class="container">
+<div class="row" *ngFor="let training of scheduleTraining.trainingList; let i=index">
+  <div class="col-xs-1">
+      {{i+1}}
+  </div>
+  <div class="col-xs-3">
+      <input type="text" class="form-control" id="collegeName" [(ngModel)]="training.collegeName" name="collegeName"> 
+  </div>
+  <div class="col-xs-3">
+      <input type="text" class="form-control" id="training.name" [(ngModel)]="training.name" name="training.name"> 
+  </div>
+  <div class="col-xs-2">
+      <input type="date" class="form-control" id="date" [(ngModel)]="training.date" name="date"> 
+  </div>
+  <div class="col-xs-3">
+      <select class="form-control" id="duration" required [(ngModel)]="training.duration" name="duration" #duration="ngModel">
+        <option *ngFor="let dur of durations"  [value]="dur">{{dur}}</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<button type="submit" class="btn btn-success" (click)=addTraining()>Submit</button>
+
+<div *ngIf="submitted" >
+    Your training scheduled successfully!!
+</div>
+
+

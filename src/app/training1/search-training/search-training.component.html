@@ -1,0 +1,40 @@
+
+
+
+<div class="container">
+<h1> Search Training</h1>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <label>Date</label>
+      <input class="form-control" type="date" id="date" [(ngModel)]="date" required  />
+    </div>
+    <div></div>
+   
+  </div>
+  <div class="row">
+      <div class="form-group col-xs-6">
+        <button class="btn btn-success" type="submit" (click)="search()">Search</button>  
+      </div>
+      <div></div>
+     
+    </div>
+    <h2>Training schedule</h2>
+                
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Trainer</th>
+          <th>College</th>
+          <th>Domain</th>
+          <th>Date</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let training of trainingList; let i=index">
+          <td>{{training.trainer.trainerId}}</td>
+          <td>{{training.collegeName}}</td>
+          <td>{{training.trainer.domain}}</td>
+          <td>{{training.date | date}}</td>
+          <td>{{training.duration}}</td>
+        </tr>
